@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import ticketRoutes from "./api/v1/routes/ticketRoutes";
 import morgan from "morgan";
 
 // Initialize Express application
@@ -14,6 +15,9 @@ app.get("/api/v1/health", (req, res) => {
         version: "1.0.0",
     });
 });
+
+// Ticket routes
+app.use("/api/v1/", ticketRoutes);
 
 // Define a route
 app.get("/", (req, res) => {
