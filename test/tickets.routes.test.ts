@@ -97,4 +97,12 @@ describe("Ticket Routes", () => {
 
         expect(response.status).toBe(404);
     });
+
+    // GET /tickets/:id/urgency
+    test("GET /tickets/:id/urgency - should return ticket urgency", async () => {
+        const response = await request(app).get("/api/v1/tickets/1/urgency");
+
+        expect(response.status).toBe(200);
+        expect(response.body.data).toHaveProperty("urgencyScore");
+    });
 });
