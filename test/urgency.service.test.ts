@@ -10,4 +10,13 @@ describe("Ticket Urgency Calculation", () => {
 
         expect(result.urgencyLevel).toBe("Low urgency. Address when capacity allows.");
     });
+
+    // Test Moderate urgency is calculated correctly
+    test("MODERATE urgency is calculated correctly", () => {
+        const result = calculateTicketUrgency(3);
+
+        if("notFound" in result) throw new Error("Ticket not found");
+
+        expect(result.urgencyLevel).toBe("Moderate. Schedule for attention.");
+    });
 });
