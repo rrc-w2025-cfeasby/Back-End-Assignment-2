@@ -105,4 +105,11 @@ describe("Ticket Routes", () => {
         expect(response.status).toBe(200);
         expect(response.body.data).toHaveProperty("urgencyScore");
     });
+
+    // GET /tickets/:id/urgency for non-existing ID returns 404
+    test("GET /tickets/:id/urgency - should return 404 for non-existing ID", async () => {
+        const response = await request(app).get("/api/v1/tickets/999/urgency");
+
+        expect(response.status).toBe(404);
+    });
 });
