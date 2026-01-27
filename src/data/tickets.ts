@@ -64,5 +64,13 @@ export const tickets: Ticket[] = [
         priority: "medium",
         status: "resolved",
         createdAt: daysAgo(10)
+    },
+    {
+        id: 8,
+        title: "Critical test case",
+        description: "Critical test case added",
+        priority: "critical",
+        status: "in-progress",
+        createdAt: daysAgo(7)
     }
 ];

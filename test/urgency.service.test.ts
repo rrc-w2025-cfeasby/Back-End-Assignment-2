@@ -28,4 +28,13 @@ describe("Ticket Urgency Calculation", () => {
 
         expect(result.urgencyLevel).toBe("High urgency. Prioritize resolution.");
     });
+
+    // Test CRITICAL urgency is calculated correctly
+    test("CRITICAL urgency is calculated correctly", () => {
+        const result = calculateTicketUrgency(8);
+
+        if("notFound" in result) throw new Error("Ticket not found");
+
+        expect(result.urgencyLevel).toBe("Critical. Immediate attention required.");
+    });
 });
