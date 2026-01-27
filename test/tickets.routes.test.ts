@@ -63,4 +63,14 @@ describe("Ticket Routes", () => {
         expect(response.status).toBe(400);
         expect(response.body.message).toBe("Missing required field: description");
     });
+
+    // Test PUT /tickets/:id
+    test("PUT /tickets/:id - should update an existing ticket", async () => {
+        const response = await request(app)
+            .put("/api/v1/tickets/1")
+            .send({ status: "in-progress" });
+
+        expect(response.status).toBe(200);
+        expect(response.body.data.status).toBe("in-progress");
+    });
 });
