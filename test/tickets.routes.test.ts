@@ -73,4 +73,13 @@ describe("Ticket Routes", () => {
         expect(response.status).toBe(200);
         expect(response.body.data.status).toBe("in-progress");
     });
+
+    // Test PUT /tickets/:id with non-existing ID return 404
+    test("PUT /tickets/:id - should return 404 for non-existing ID", async () => {
+        const response = await request(app)
+            .put("/api/v1/tickets/999")
+            .send({ status: "in-progress" });
+        
+        expect(response.status).toBe(404);
+    });
 });
