@@ -46,12 +46,21 @@ describe("Ticket Routes", () => {
             priority: "high"
         };
 
-
         const response = await request(app)
             .post("/api/v1/tickets")
             .send(newTicket);
 
         expect(response.status).toBe(201);
         expect(response.body.data.title).toBe("New Ticket");
+    });
+
+    // Test POST /tickets with missing fields
+    test("POST /tickets - should return 400 for missing fields", async () => {
+        const response = await request(app)
+            .post("/api/v1/tickets")
+            .send({ title: "Incomplete Ticket" });
+
+        expect(response.status).toBe(400);
+        expect(response.body.message).toBe("Missing required field: description");
     });
 });
