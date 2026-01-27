@@ -82,4 +82,12 @@ describe("Ticket Routes", () => {
         
         expect(response.status).toBe(404);
     });
+    
+    // Test DELETE /tickets/:id
+    test("DELETE /tickets/:id - should delete a ticket", async () => {
+        const response = await request(app).delete("/api/v1/tickets/2");
+
+        expect(response.status).toBe(200);
+        expect(response.body.message).toBe("Ticket deleted");
+    });
 });
