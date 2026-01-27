@@ -90,4 +90,11 @@ describe("Ticket Routes", () => {
         expect(response.status).toBe(200);
         expect(response.body.message).toBe("Ticket deleted");
     });
+
+    // Test DELETE /tickets/:id with non-existing ID return 404
+    test("DELETE /tickets/:id - should return 404 for non-existing ID", async () => {
+        const response = await request(app).delete("/api/v1/tickets/999");
+
+        expect(response.status).toBe(404);
+    });
 });
