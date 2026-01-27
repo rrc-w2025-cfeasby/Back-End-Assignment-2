@@ -10,4 +10,12 @@ describe("Ticket Routes", () => {
         expect(response.status).toBe(200);
         expect(response.body.data.length).toBe(tickets.length);
     })
+
+    // GET /tickets returns correct structure
+    test("GET /tickets - should return correct strucuture", async () => {
+        const response = await request(app).get("/api/v1/tickets");
+
+        expect(response.body).toHaveProperty("message");
+        expect(response.body).toHaveProperty("data");
+    })
 });
