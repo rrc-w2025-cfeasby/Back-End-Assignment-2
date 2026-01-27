@@ -1,6 +1,8 @@
 import request from "supertest";
 import app from "../src/app";
 import { tickets } from "../src/data/tickets";
+import { title } from "node:process";
+import { Ticket } from "../src/api/v1/types/ticket";
 
 describe("Ticket Routes", () => {
     // Test GET /tickets
@@ -33,5 +35,23 @@ describe("Ticket Routes", () => {
 
         expect(response.status).toBe(404);
         expect(response.body.message).toBe("Ticket not found");
+    });
+
+    // Test POST /tickets
+    test("POST /tickets - should create a new ticket", async () => {
+        const newTicket = {
+            title: "New Ticket",
+            description: "This is a new ticket",
+            status: "open",
+            priority: "high"
+        };
+
+
+        const response = await request(app)
+            .post("/api/v1/tickets")
+            .send(newTicket);
+
+        expect(response.status).toBe(201);
+        expect(response.body.data.title).toBe("New Ticket");
     });
 });
