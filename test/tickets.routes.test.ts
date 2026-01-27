@@ -18,4 +18,12 @@ describe("Ticket Routes", () => {
         expect(response.body).toHaveProperty("message");
         expect(response.body).toHaveProperty("data");
     })
+
+    // GET /tickets/:id
+    test("GET /tickets/:id - should return a ticket by ID", async () => {
+        const response = await request(app).get("/api/v1/tickets/1");
+
+        expect(response.status).toBe(200);
+        expect(response.body.data.id).toBe(1);
+    });
 });
